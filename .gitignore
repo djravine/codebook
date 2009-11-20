@@ -2,3 +2,4 @@ log/*
 tmp/*
 .DS_Store
 public/cache/**/*
+config/database.yml
