@@ -1,0 +1,95 @@
+
+<P>
+<div class="blog">
+
+	<table class="blog-title-table" width="100%" cellpadding="0" cellspacing="0">
+	<tr><td align="center" class="blog-date-section">
+		<div class="blog-date-time"><%=h @user.created_at.strftime("%I:%M%p") %> <%=h @user.created_at.strftime("%Y") %></div>
+		</td></tr><tr><td width="70px" align="center" class="blog-date">
+		<div class="blog-date-day"><%=h @user.created_at.strftime("%d") %></div>
+	</td><td valign="bottom" rowspan="3">
+		<div class="blog-title">&nbsp;[<a href="/users/<%=h @user.id %>"><%= sanitize(@user.login) %></a>] - <%= sanitize(@user.name) %></div>
+	</td></tr><tr><td align="center" class="blog-date-section">
+		<div class="blog-date-month"><%=h @user.created_at.strftime("%B") %></div>
+	</td></tr>
+	</table>
+
+
+		<% if admin? %>
+    <div class="download-edit" align="right">
+			<%= link_to "<img src='http://wowps.org:443/images/icons/table.png' alt='Edit' Title='Edit' border='0'>", edit_user_path %>
+			<%= link_to "<img src='http://wowps.org:443/images/icons/delete.png' alt='Delete' title='Delete' border='0'>", user_path, :confirm => 'Are you sure?', :method => :delete %>
+			<%= link_to "<img src='http://wowps.org:443/images/icons/add.png' alt='New' Title='New' border='0'>", new_user_path %>
+		</div>
+		<% end %><P>
+
+		<center><div class="user_facts" align="center">
+			<div class="download_facts_heading">USER FACTS</div>
+			<table border="0" align="center">
+				<tbody><tr><td class="download_facts_title">
+	    		Login:
+				</td><td align="left">
+	    		<%= @user.login %><br>
+				</td></tr>
+
+				<tr><td class="download_facts_title">
+	    		Name:
+				</td><td align="left">
+	    		<%= @user.name %><br>
+				</td></tr>
+				<tr><td class="download_facts_title">
+	    		Email:
+				</td><td align="left">
+	    		<%= @user.email %><br>
+				</td></tr>
+				<tr><td class="download_facts_title">
+	    		Joined:
+				</td><td align="left">
+	    		<%= @user.created_at.strftime("%d %B, %Y") %><br>
+				</td></tr>
+				<tr><td class="download_facts_title">
+	    		Posts:
+				</td><td align="left">
+	    		<%= get_user_post_count(@user.id) %><br>
+				</td></tr>
+				<tr><td class="download_facts_title">
+	    		Files:
+				</td><td align="left">
+	    		<%= get_user_file_count(@user.id) %><br>
+				</td></tr>
+				<tr><td class="download_facts_title">
+	    		Comments:
+				</td><td align="left">
+	    		<%= get_user_comment_count(@user.id) %><br>
+				</td></tr>
+		  </tbody></table>
+
+		</div></center>
+
+
+</div><br/>
+
+	<h1>User Roles</h1>
+	<% if @roles.empty? %>
+		 <div align="center">No Roles assigned for this user...</div>
+	<% else %>
+		<table width="100%">
+			<%= render :partial => 'roles_info.html.erb', :collection => @roles, :as => :role %>  
+		</table><P>
+		<% if admin? %>
+		<div align="left">
+			<% form_for :newrole, :url => roles_path do |f| -%>
+				<%= error_messages_for :role %>
+				<%= f.collection_select :name, @usergroups, :name, :name %> 
+				<%= f.hidden_field :user_id, :value=>params[:id] %>
+				<%= submit_tag 'Assign' %>
+			<% end -%>
+		</div>
+		<% end %>
+	<% end %>
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

@@ -1,0 +1,12 @@
+
+  <tr>
+    <td align="left"><%= link_to role.name, role %></td>
+    <td align="right" width="12%">
+			<%= link_to "<img src='http://wowps.org:443/images/icons/zoom.png' alt='Show' border='0'>", role %>
+			<% if admin? %>
+			<%= link_to "<img src='http://wowps.org:443/images/icons/table.png' alt='Edit' border='0'>", edit_role_path(role) %>
+			<%= link_to "<img src='http://wowps.org:443/images/icons/delete.png' alt='Delete' border='0'>", role, :confirm => 'Are you sure?', :method => :delete %>
+			<% end %>
+		</td>
+  </tr>
+

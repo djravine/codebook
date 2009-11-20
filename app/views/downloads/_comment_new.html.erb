@@ -1,0 +1,31 @@
+
+<div>
+	<% form_for(@comment) do |f| %>
+	  <%= f.error_messages %>
+	
+	  <p>
+	    Name:<br />
+	    <% if logged_in? %>
+				<%= f.text_field :name, :value=>get_username(@current_user.id) %>
+			<% else %>
+				<%= f.text_field :name %>
+			<% end %>
+	  </p>
+	  <p class="comment-create-form">
+			<%= textile_editor 'comment', 'body', :cols => 66, :rows => 10 -%>
+			<%= textile_editor_initialize -%>
+	  </p>
+	  <p>
+	    <%= f.hidden_field :download_id, :value=>current_download_id %>
+	    <% if logged_in? %>
+		  	<%= f.hidden_field :user_id, :value=>@current_user.id %>
+			<% end %>
+	  </p>
+		<p>
+			<%= show_simple_captcha( :image_style => 'distorted_black', :distortion => 'medium', :label => 'Are you human?' ) %> 
+		</p>
+	  <p>
+	    <%= f.submit 'Post Comment' %>
+	  </p>
+	<% end %>
+</div><br/>

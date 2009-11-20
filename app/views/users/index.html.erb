@@ -1,0 +1,40 @@
+
+<br/>
+
+<div class="blog">
+	<div class="blog-heading">Blog Users...</div><P>
+
+		<table width="100%">
+		  <tr>
+		    <th align="left" width="15%">Joined</th>
+		    <th align="left">Login</th>
+		    <th align="left">Name</th>
+		    <th align="left">Email</th>
+				<% if admin? %>
+				<th align="right" width="12%"><%= link_to "<img src='http://wowps.org:443/images/icons/add.png' alt='Add' border='0'>", new_user_path %></th>
+				<% end %>
+		  </tr>
+		
+		<% @users.each do |user| %>
+		  <tr>
+		    <td class="datestamp"><%=h user.created_at.strftime("%Y-%m-%d") %></td>
+		    <td align="left"><%= link_to user.login, user %></td>
+		    <td align="left"><%= link_to user.name, user %></td>
+		    <td align="left"><%= link_to user.email, user %></td>
+				<% if admin? %>
+		    <td align="right">
+					<%= link_to "<img src='http://wowps.org:443/images/icons/zoom.png' alt='Show' border='0'>", user %>
+					<%= link_to "<img src='http://wowps.org:443/images/icons/table.png' alt='Edit' border='0'>", edit_user_path(user) %>
+					<%= link_to "<img src='http://wowps.org:443/images/icons/delete.png' alt='Delete' border='0'>", user, :confirm => 'Are you sure?', :method => :delete %>
+				</td>
+				<% end %>
+		  </tr>
+		<% end %>
+		</table>
+
+</div><br/>
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

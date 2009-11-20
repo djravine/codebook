@@ -1,0 +1,12 @@
+<h1>Editing archiefe</h1>
+
+<% form_for(@archiefe) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @archiefe %> |
+<%= link_to 'Back', archieves_path %>

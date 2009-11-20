@@ -1,0 +1,10 @@
+
+<% @comments_recent.reverse.each do |comment| %>
+  <div class="comment-sidebar">
+		<div class="comment-title"><a href="posts/show/<%=h comment.post_id %>"><%=h comment.name %></a></div>
+  	<div class="comment-date-create-sidebar" align="left"><%=h comment.created_at.strftime("%B %d, %Y @ %I:%M%p") %></div>
+	  <div class="comment-body-sidebar"> "<%=h comment.body %>"</div>
+	</div>
+<% end %>
+
+

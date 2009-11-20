@@ -1,0 +1,58 @@
+<P>
+<div class="blog">
+
+	<div class="blog-heading">Article Archieves for <%= @archievedate.strftime("%d %B, %Y") %>...</div><P>
+<% @archieved_posts.reverse.each do |post| %>
+ 
+	<table class="blog-title-table" width="100%" cellpadding="0" cellspacing="0">
+	<tr><td align="center" class="blog-date-section">
+		<div class="blog-date-time"><%=h post.created_at.strftime("%I:%M%p") %> <%=h post.created_at.strftime("%Y") %></div>
+		</td></tr><tr><td width="70px" align="center" class="blog-date">
+		<div class="blog-date-day"><%=h post.created_at.strftime("%d") %></div>
+	</td><td valign="bottom" rowspan="3">
+		<div class="blog-title">&nbsp;[<a href="/posts/<%=h post.id %>"><%= sanitize(post.title) %></a>]</div>
+	</td></tr><tr><td align="center" class="blog-date-section">
+		<div class="blog-date-month"><%=h post.created_at.strftime("%B") %></div>
+	</td></tr>
+	</table>
+  <div class="blog-body"><%= preview(post.body) %></div>
+  <div class="blog-footer" align="right"><a href="/posts/<%=h post.id %>">[Read More]</a></div><P>
+<% end %>
+
+<% if @archieved_posts.empty? %>
+	<div class="blog-body">Sorry, There are no articles archieved for this date...</div>
+<% end %>
+
+	<P>
+	<div class="blog-heading">Download Archieves for <%= @archievedate.strftime("%d %B, %Y") %>...</div><P>
+<% @archieved_downloads.reverse.each do |download| %>
+	<table class="blog-title-table" width="100%" cellpadding="0" cellspacing="0">
+	<tr><td align="center" class="blog-date-section">
+		<div class="blog-date-time"><%=h download.created_at.strftime("%I:%M%p") %> <%=h download.created_at.strftime("%Y") %></div>
+		</td></tr><tr><td width="70px" align="center" class="blog-date">
+		<div class="blog-date-day"><%=h download.created_at.strftime("%d") %></div>
+	</td><td valign="bottom" rowspan="3">
+		<div class="blog-title">&nbsp;[<a href="/downloads/<%=h download.id %>"><%= sanitize(download.title) %></a>]</div>
+	</td></tr><tr><td align="center" class="blog-date-section">
+		<div class="blog-date-month"><%=h download.created_at.strftime("%B") %></div>
+	</td></tr>
+	</table>
+  <div class="blog-body"><%= preview(download.body) %></div>
+  <div class="blog-footer" align="right"><a href="/downloads/<%=h download.id %>">[Read More]</a></div><P>
+<% end %>
+
+<% if @archieved_downloads.empty? %>
+	<div class="blog-body">Sorry, There are no downloads archieved for this date...</div>
+<% end %>
+
+</div><br/>
+
+
+
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

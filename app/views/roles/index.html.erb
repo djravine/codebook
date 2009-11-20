@@ -1,0 +1,38 @@
+
+<br/>
+
+<div class="blog">
+	<div class="blog-heading">Blog User Roles...</div><P>
+
+		<table width="100%">
+		  <tr>
+		    <th align="left" width="15%">Created</th>
+		    <th align="left">Role</th>
+		    <th align="left">User</th>
+				<% if admin? %>
+				<th align="right" width="12%"><%= link_to "<img src='http://wowps.org:443/images/icons/add.png' alt='Add' border='0'>", new_role_path %></th>
+				<% end %>
+		  </tr>
+		
+		<% @roles.each do |role| %>
+		  <tr>
+		    <td class="datestamp"><%=h role.created_at.strftime("%Y-%m-%d") %></td>
+		    <td align="left"><%= link_to role.name, role %></td>
+		    <td align="left"><%= link_to get_username(role.user_id), role %></td>
+				<% if admin? %>
+		    <td align="right">
+					<%= link_to "<img src='http://wowps.org:443/images/icons/zoom.png' alt='Show' border='0'>", role %>
+					<%= link_to "<img src='http://wowps.org:443/images/icons/table.png' alt='Edit' border='0'>", edit_role_path(role) %>
+					<%= link_to "<img src='http://wowps.org:443/images/icons/delete.png' alt='Delete' border='0'>", role, :confirm => 'Are you sure?', :method => :delete %>
+				</td>
+				<% end %>
+		  </tr>
+		<% end %>
+		</table>
+
+</div><br/>
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

@@ -1,0 +1,53 @@
+
+<P>
+<center><div class="user_stats" align="center">
+	<div class="user_facts_heading">MY STATS</div>
+	<table border="0" align="center" cellpadding="2px" cellspacing="2px">
+		<tbody><tr><td class="download_facts_title">
+    		
+		</td><td align="right" class="download_facts_title">
+    		Me<br>
+		</td><td align="right" class="download_facts_title">
+    		All
+		</td><td align="center" class="download_facts_title">
+    		%
+		</td></tr>
+		<tr><td class="download_facts_title">
+    		Posts:
+		</td><td align="right">
+    		<%= get_user_post_count(@current_user.id) %><br>
+		</td><td align="right">
+    		<%= get_post_count() %><br>
+		</td><td align="right">
+    		<%= get_user_post_percent(@current_user.id) %><br>
+		</td></tr>
+		<tr><td class="download_facts_title">
+    		Files:
+		</td><td align="right">
+    		<%= get_user_file_count(@current_user.id) %><br>
+		</td><td align="right">
+    		<%= get_file_count() %><br>
+		</td><td align="right">
+    		<%= get_user_file_percent(@current_user.id) %><br>
+		</td></tr>
+		<tr><td class="download_facts_title">
+    		Comments:
+		</td><td align="right">
+    		<%= get_user_comment_count(@current_user.id) %><br>
+		</td><td align="right">
+    		<%= get_comment_count() %><br>
+		</td><td align="right">
+    		<%= get_user_comment_percent(@current_user.id) %><br>
+		</td></tr>
+  </tbody></table>
+
+
+</div>
+
+<div align="center">You own <%= get_user_percent(@current_user.id) %> of this blog.</div>
+
+</center>
+
+
+
+

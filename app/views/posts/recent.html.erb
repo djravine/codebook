@@ -1,0 +1,8 @@
+
+<% @posts_recent.reverse.each do |post| %>
+  <div class="recent-sidebar">
+	  <div class="recent-title"><a href="/posts/show/<%=h post.id %>"><%=h post.title[0..25] %>...</a></div>
+  	<div class="recent-pageviews">Views: <%= post.views.to_s == ""  ? "0" : post.views %></div>
+  	<div class="recent-date-create" align="left"><%=h post.created_at.strftime("%B %d, %Y @ %I:%M%p") %></div>
+	</div>
+<% end %>

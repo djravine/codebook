@@ -1,0 +1,41 @@
+
+<br/>
+
+<div class="blog">
+	<div class="blog-heading">Update My Details...</div><P>
+
+		<% form_for(@user) do |f| %>
+		  <%= f.error_messages %>
+		
+		  <p>
+		    Username: <%= @user.login %>
+		  </p>
+		  <p>
+		    Created: <%= @user.created_at %>
+		  </p>
+		  <p>
+		    Updated: <%= @user.updated_at %>
+		  </p>
+		  <p>
+		    <%= f.label :name %><br />
+		    <%= f.text_field :name %>
+		  </p>
+		  <p>
+		    <%= f.label :email %><br />
+		    <%= f.text_field :email %>
+		  </p>
+		  <p>
+		    <%= f.submit 'Update' %>
+		  </p>
+		<% end %>
+
+
+</div><br/>
+
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

@@ -1,0 +1,52 @@
+<P>
+<div class="blog-heading">Create an Account...</div><p>&nbsp;<br/>
+
+<div align="center">
+
+Please fill out all the required information and create an account.
+
+<% @user.password = @user.password_confirmation = nil %>
+
+<%= error_messages_for :user %>
+
+<table>
+<tr><td align="left">
+
+	<% form_for :user, :url => users_path do |f| -%>
+	<p><%= label_tag 'login' %><br/>
+	<%= f.text_field :login %></p>
+	
+	<p><%= label_tag 'email' %><br/>
+	<%= f.text_field :email %></p>
+	
+	<p><%= label_tag 'password' %><br/>
+	<%= f.password_field :password %></p>
+	
+	<p><%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
+	<%= f.password_field :password_confirmation %></p>
+
+</td></tr>
+<tr><td align="center">
+
+	<%= show_simple_captcha( :image_style => 'distorted_black', :distortion => 'medium', :label => 'Are you human?' ) %><P>
+
+</td></tr>
+<tr><td align="center">
+
+	<%= submit_tag 'Sign up' %>
+
+</td></tr>
+</table>
+</div>
+
+<% end -%>
+
+
+
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

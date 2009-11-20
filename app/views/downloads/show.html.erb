@@ -1,0 +1,113 @@
+<P>
+<div class="blog">
+
+		<div align="left">
+			
+			<div class="download_facts_info">
+			    <div class="blog-heading"> <%= @download.title %></div>
+				  <div class="blog-tags"><%= taglinks(@download.tags) %></div>
+				  <div class="blog-views" align="right"><b>Page Views: <%= @download.views %></b></div>
+			</div>
+
+			<div class="download_now_box">
+				<div class="download_now">
+					<a href="/downloads/download/<%= @download.id %>" alt="Download '<%= @download.filename %>'..." title="Download '<%= @download.filename %>'..."><img src="/images/downloadicon.png" border="0"></a>
+				</div>
+				<div class="download_now_text">
+					<a href="/downloads/download/<%= @download.id %>" alt="Download '<%= @download.filename %>'..." title="Download '<%= @download.filename %>'...">Download Now</a>
+				</div><p>
+			</div>
+
+			<% if @download.image? %>
+				<div align="left" width="200px">
+					<div align="center" class="preview">
+						<a href="<%= @download.public_filename %>" target="_blank" alt="<%= @download.title %>" title="<%= @download.title %>" rel="shadowbox">			
+						<img src="<%= @download.public_filename(:thumb) %>" width="160px" height="130px"><div class="preview_enlarge_show"></div><div class="preview_enlarge_text">[Click to Enlarge]</div></a>
+					</div>
+				</div>
+			<% else %>
+				<div align="left" width="200px" style="margin-bottom:68px;"></div>
+			<% end %>
+
+		  <div class="download_facts">
+				<div class="download_facts_heading">QUICK FACTS</div>
+				<table border="0">
+					<tr><td class="download_facts_title">
+		    		Filename:
+					</td><td align="left">
+		    		<%= @download.filename  %><br/>
+					</td></tr>
+					<tr><td class="download_facts_title">
+		    		Filetype:
+					</td><td align="left">
+		    		<img src="/images/icons/filetypes/icon_<%= get_file_extension(@download.filename) %>.gif" alt="<%= get_file_extension(@download.filename).upcase %>" title="<%= get_file_extension(@download.filename).upcase %>"> <%= get_file_extension(@download.filename).upcase %><br/>
+					</td></tr>
+					<tr><td class="download_facts_title">
+		    		Size:
+					</td><td align="left">
+		    		<%= number_to_human_size(@download.size)  %><br/>
+					</td></tr>
+					<% if @download.image? %><% if @download.width.to_s != "" %><% if @download.height.to_s != "" %>
+					<tr><td class="download_facts_title">
+		    		Dimensions:
+					</td><td align="left">
+		    		<%= @download.width %>px by <%= @download.height %>px<br/>
+					</td></tr>
+					<% end %><% end %><% end %>
+					<tr><td class="download_facts_title">
+		    		Added:
+					</td><td align="left">
+		    		<%= @download.created_at.strftime("%d %b %Y")  %><br/>
+					</td></tr>
+					<tr><td class="download_facts_title">
+		    		Downloads:
+					</td><td align="left">
+		    		<%= @download.downloads %><%=h "0" if @download.downloads.to_s=="" %><br/>
+					</td></tr>
+			  </table>
+			</div>
+
+			<% if admin? %>
+	    <div class="download-edit" align="right">
+				<%= link_to "<img src='http://wowps.org:443/images/icons/table.png' alt='Edit' Title='Edit' border='0'>", edit_download_path %>
+				<%= link_to "<img src='http://wowps.org:443/images/icons/delete.png' alt='Delete' title='Delete' border='0'>", download_path, :confirm => 'Are you sure?', :method => :delete %>
+				<%= link_to "<img src='http://wowps.org:443/images/icons/add.png' alt='New' Title='New' border='0'>", new_download_path %>
+			</div>
+			<% end %>
+
+			<% if @download.image? %><% if @download.width.to_s == "" %><% if @download.height.to_s == "" %>
+					&nbsp;<P>&nbsp;<P>
+			<% end %><% end %><% end %>
+
+			<div class="blog-body"><%= prettify(@download.body) %></div>
+
+		</div>
+
+		<div class="comment">
+			<div class="comment-heading">Comments...</div><P>
+		
+		<% @comments.each do |comment| %>
+		  <div class="comment-title"><span class="comment-date-create">Posted by</span> <%=h sanitize(comment.name) %> <span class="comment-date-create"> on <%=h comment.created_at.strftime("%B %d, %Y @ %I:%M%p") %></span></div>
+		  <div class="comment-body"><%= prettify(comment.body) %></div><P>
+			<div class="comment-footer"> </div><P>
+		<% end %>
+		<div class="comment-body"><%=h "No comments..." if @comments.count==0 %></div>
+		</div><br/>
+		
+		
+		<div class="comment-create">
+			<div class="comment-heading">Leave a Comment...</div><P>
+			<%= render :partial => "comment_new.html.erb", :locals => {:current_download_id => @download.id} %>  
+		</div><br/>
+
+</div><br/>
+
+
+
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

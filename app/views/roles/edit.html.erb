@@ -1,0 +1,34 @@
+<P>
+<div class="blog-heading">Edit Role...</div><p>&nbsp;<br/>
+
+<div align="center">
+
+
+<% form_for(@role) do |f| %>
+<%= error_messages_for :role %>
+<table>
+<tr><td align="left">
+	<%= label_tag 'Role' %><br/>
+	<%= f.collection_select :name, @usergroups, :name, :name, :selected_value => @role.name %>
+</td><td align="left">
+	<%= label_tag 'User' %><br/>
+	<%= f.collection_select :user_id, @users, :id, :login, :selected_value => get_username(@role.user_id) %>
+</td></tr>
+<tr><td align="center" colspan="2">
+    Created: <%= @role.created_at %><br/>
+    Updated: <%= @role.updated_at %>
+</td></tr>
+<tr><td align="center" colspan="2">
+	<%= f.submit 'Update' %>
+</td></tr>
+</table>
+<% end -%>
+
+</div>
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

@@ -1,0 +1,9 @@
+
+  <div class="recent-sidebar">
+	  <ul id="tag-cloud">
+			<% tag_cloud @tags, %w(nube1 nube2 nube3 nube4 nube5 nube6 nube7 nube8 nube9 nube10) do |name, css_class, count| %>
+			  <li><a href="/tags/<%= name %>" class="<%= css_class %>" title="<%= name %> [<%= count %>]"><%= name %></a></li>
+			<% end %>
+		</ul><P>
+	</div>
+

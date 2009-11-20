@@ -1,0 +1,24 @@
+
+<div class="comment-create-form">
+<% form_for(@comment) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label "Name" %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label "Comment" %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.label "Post ID" %><br />
+    <%= f.text_field :post_id %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+</div><br/>
+
+

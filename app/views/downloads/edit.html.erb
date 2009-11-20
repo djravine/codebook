@@ -1,0 +1,66 @@
+<P>
+<div class="blog">
+	<div class="blog-heading">Edit a File...</div><P>
+
+		<div align="left" ><P>&nbsp;<P>
+			<% form_for(@download) do |f| %>
+			  <%= f.error_messages %>
+			
+				<% if @download.image? %>
+				<div align="right">
+					<div align="center" class="preview-edit">
+						<a href="<%= @download.public_filename %>" target="_blank" alt="<%= @download.title %>" title="<%= @download.title %>" rel="shadowbox">			
+						<img src="<%= @download.public_filename(:thumb) %>" width="160px" height="130px"><div class="preview_enlarge_show"></div><div class="preview_enlarge_text">[Click to Enlarge]</div></a>
+					</div>
+				</div>
+				<% end %>
+
+			  <p>
+			    <b>Filename:</b> <%= @download.filename  %>
+			  </p>
+			  <p>
+			    <b>Content Type:</b> <%= @download.content_type %>
+			  </p>
+			  <p>
+			    <b>Size:</b> <%= number_to_human_size(@download.size) %>
+			  </p>
+			  <p>
+			    <b>Width:</b> <%= @download.width %>
+			  </p>
+			  <p>
+			    <b>Height:</b> <%= @download.height %>
+			  </p>
+
+				<p>
+					<b>Download:</b> <a href="/downloads/download/<%= params[:id] %>" target="_blank">http://wowps.org:443/downloads/download/<%= params[:id] %></a>
+				</p>
+
+			  <p>
+			    <%= f.label "Title" %><br />
+			    <%= f.text_field :title  %>
+			  </p>
+			  <p>
+			    <%= f.label :tags %><br />
+			    <%= f.text_field :tags %>
+			  </p>
+			  <p class="create-form">
+					<%= textile_editor 'download', 'body', :cols => 66, :rows => 30 -%>
+					<%= textile_editor_initialize -%>
+			  </p>
+			  <p>
+			    <%= f.submit 'Update' %>
+			  </p>
+			<% end %>
+		</div>
+
+</div><br/>
+
+
+
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

@@ -1,0 +1,57 @@
+<P>
+<div class="blog">
+
+	<table class="blog-title-table" width="100%" cellpadding="0" cellspacing="0">
+	<tr><td align="center" class="blog-date-section">
+		<div class="blog-date-time"><%=h @post.created_at.strftime("%I:%M%p") %> <%=h @post.created_at.strftime("%Y") %></div>
+		</td></tr><tr><td width="70px" align="center" class="blog-date">
+		<div class="blog-date-day"><%=h @post.created_at.strftime("%d") %></div>
+	</td><td valign="bottom" rowspan="3">
+		<div class="blog-title">&nbsp;[<a href="/posts/<%=h @post.id %>"><%= sanitize(@post.title) %></a>]</div>
+	</td></tr><tr><td align="center" class="blog-date-section">
+		<div class="blog-date-month"><%=h @post.created_at.strftime("%B") %></div>
+	</td></tr>
+	</table>
+
+	<% if admin? %>
+    <div class="blog-edit" align="right">
+		<a href="/admin/posts/<%=h @post.id %>/edit" alt="Edit" title="Edit"><img src="/images/icons/table.png" alt="Edit" title="Edit" border="0"></a>
+		<%= link_to "<img src='/images/icons/delete.png' alt='Delete' border='0'>", "/admin/posts/"+@post.id.to_s, :confirm => 'Are you sure?', :method => :delete %>
+		<a href="/admin/posts/new" alt="New" title="New"><img src="/images/icons/add.png" alt="New" title="New" border="0"></a>
+	</div>
+	<% end %>
+
+  <div class="blog-tags-top"><%= taglinks(@post.tags) %></div><P>
+  <div class="blog-views-top" align="left"><b>Article Views: <%= @post.views %></b></div>
+  <div class="blog-body"><%= prettify(@post.body) %></div>
+  <div class="blog-tags"><%= taglinks(@post.tags) %></div>
+  <div class="blog-views" align="right"><b>Article Views: <%= @post.views %></b></div>
+
+</div><br/>
+
+<div class="comment">
+	<div class="comment-heading">Comments...</div><P>
+
+<% @comments.each do |comment| %>
+  <div class="comment-title"><span class="comment-date-create">Posted by</span> <%=h sanitize(comment.name) %> <span class="comment-date-create"> on <%=h comment.created_at.strftime("%B %d, %Y @ %I:%M%p") %></span></div>
+  <div class="comment-body"><%= prettify(comment.body) %></div><P>
+	<div class="comment-footer"> </div><P>
+<% end %>
+<div class="comment-body"><%=h "No comments..." if @comments.count==0 %></div>
+</div><br/>
+
+
+<div class="comment-create">
+	<div class="comment-heading">Leave a Comment...</div><P>
+	<%= render :partial => "comment_new.html.erb", :locals => {:current_post_id => @post.id} %>  
+</div><br/>
+
+
+
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

@@ -1,0 +1,79 @@
+<P>
+<div class="intro">
+
+	Welcome to my download center.
+
+</div>
+<div class="intro">
+
+	Here you will find Sample Projects, Freeware, Free eBooks and other exciting content.
+
+</div><br/>
+
+<div class="blog">
+	<div class="blog-heading">Latest Downloads...</div>
+
+		<table id="downloads" border="0" width="100%">
+				<% if admin? %>
+		    <tr><td align="right" colspan="10">
+					<%= link_to "<img src='http://wowps.org:443/images/icons/add.png' alt='Add' border='0'>", new_download_path %>
+				</td></tr>
+				<% end %>
+				<tr id="downloads_header">
+					<td width="10%">
+						<b>Date</b>
+					</td>
+					<td width="10%">
+						<b></b>
+					</td>
+					<td>
+						<b>Title</b>
+					</td>
+					<!--<td>
+						<b>Filename</b>
+					</td>-->
+					<td>
+						<% if admin? %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<% end %>
+						<b>FileSize</b>
+					</td>
+				</tr>
+
+			<% @downloads.each do |download| %>
+
+				<tr id="downloads_<%= download.id %>">
+					<td class="datestamp" align="left">
+						<%= download.created_at.strftime("%Y-%m-%d") %>
+					</td>
+					<td align="center">
+						<a href="/downloads/download/<%= download.id %>" alt="<%= download.filename %>" title="<%= download.filename %>"><img src="/images/icons/disk.png" alt="Download" title="Download" border="0"></a>
+						<a href="/downloads/<%= download.id %>" alt="<%= download.filename %>" title="<%= download.filename %>"><img src="/images/icons/help.png" alt="Information" title="Information" border="0"></a>
+					</td>
+					<td class="downloads_title">
+						<a href="/downloads/<%= download.id %>" alt="<%= download.title %>" title="<%= download.title %>"><img src="/images/icons/filetypes/icon_<%= get_file_extension(download.filename) %>.gif" alt="<%= get_file_extension(download.filename).upcase %>" title="<%= get_file_extension(download.filename).upcase %>" border="0">
+						<%= download.title %></a>
+					</td>
+					<!--<td class="downloads_filename">
+						<a href="/downloads/download/<%= download.id %>" alt="<%= download.filename %>" title="<%= download.filename %>">
+						<%= download.filename %></a>
+					</td>-->
+					<td>
+						<% if admin? %>
+						<%= link_to "<img src='http://wowps.org:443/images/icons/delete.png' alt='Delete' border='0'>", download, :confirm => 'Are you sure?', :method => :delete %>
+						<a href="/downloads/<%= download.id %>/edit" alt="Edit <%= download.filename %>" title="Edit <%= download.filename %>"><img src="/images/icons/table.png" alt="Edit" title="Edit" border="0"></a>
+						<% end %>
+						<%= number_to_human_size(download.size) %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+
+</div><br/>
+
+
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

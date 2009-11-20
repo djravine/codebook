@@ -1,0 +1,37 @@
+
+<br/>
+
+<div class="blog">
+	<div class="blog-heading">Modify Blog Article...</div><P>
+
+		<% form_for([:admin, @post]) do |f| %>
+		  <%= f.error_messages %>
+		
+		  <p>
+		    <%= f.label :title %><br />
+		    <%= f.text_field :title %>
+		  </p>
+		  <p class="comment-create-form">
+				<%= textile_editor 'post', 'body', :cols => 66, :rows => 30, :value => @post.body -%>
+				<%= textile_editor_initialize -%>
+		  </p>
+		  <p>
+		    <%= f.label :tags %><br />
+		    <%= f.text_field :tags %>
+		  </p>
+		  <p>
+		    <%= f.submit 'Update' %>
+				<%= link_to "<img src='http://wowps.org:443/images/icons/cross.png' alt='Back' border='0' align='right'>", admin_posts_path %>
+		  </p>
+		<% end %>
+
+
+</div><br/>
+
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

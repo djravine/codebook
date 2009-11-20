@@ -1,0 +1,37 @@
+<% if admin? %>
+	<div class="loginpanel-controls-user" align="center">
+		<table width="90%">
+			<tr><td align="right">
+				<b>Users: </b>
+			</td><td>
+				<a href="/users/"><img src="/images/icons/user_edit.png" alt="Manage Users" title="Manage Users" border="0"></a>
+			</td><td>
+				<a href="/users/new/"><img src="/images/icons/user_add.png" alt="New User" title="New User" border="0"></a>
+			</td>
+			<td> </td>
+			<td align="right">
+				<b>Posts: </b>
+			</td><td>
+				<a href="/admin/posts/"><img src="/images/icons/page_edit.png" alt="Manage Posts" title="Manage Posts" border="0"></a>
+			</td><td>
+				<a href="/admin/posts/new/"><img src="/images/icons/page_add.png" alt="New Post" title="New Post" border="0"></a>
+			</td></tr>
+			<tr>
+			<td align="right">
+				<b>Roles: </b>
+			</td><td>
+				<a href="/roles/"><img src="/images/icons/group_edit.png" alt="Manage Roles" title="Manage Roles" border="0"></a>
+			</td><td>
+				<a href="/roles/new/"><img src="/images/icons/group_add.png" alt="New Role" title="New Role" border="0"></a>
+			</td>
+			<td> </td>
+			<td align="right">
+				<b>Files: </b>
+			</td><td>
+				<a href="/downloads/"><img src="/images/icons/film_edit.png" alt="Manage Files" title="Manage Files" border="0"></a>
+			</td><td>
+				<a href="/downloads/new/"><img src="/images/icons/film_add.png" alt="New File" title="New File" border="0"></a>
+			</td></tr>
+			<table>
+	</div>
+<% end %>

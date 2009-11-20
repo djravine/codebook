@@ -1,0 +1,37 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+post_one:
+  title: Hello World
+  body: MyText
+  created_at: <%= (Time.now - 1.week).to_s(:db) %>
+  updated_at: <%= (Time.now - 1.week).to_s(:db) %>
+
+post_two:
+  title: Hello Brazil
+  body: MyText
+  created_at: <%= (Time.now - 2.weeks).to_s(:db)%>
+  updated_at: <%= (Time.now - 2.weeks).to_s(:db)%>
+
+post_three:
+ title: Hello RailsConf
+ body: MyText
+ created_at: <%= (Time.now).to_s(:db)%>
+ updated_at: <%= (Time.now).to_s(:db)%>
+ 
+post_four:
+ title: Rails 2.1
+ body: 
+ created_at: <%= (Time.now).to_s(:db)%>
+ updated_at: <%= (Time.now).to_s(:db)%>
+
+post_five:
+ title: RailsCasts
+ body: 
+ created_at: <%= (Time.now - 1.week).to_s(:db)%>
+ updated_at: <%= (Time.now - 1.week).to_s(:db)%>
+
+post_five:
+ title: AkitaOnRails
+ body: 
+ created_at: <%= (Time.now).to_s(:db)%>
+ updated_at: <%= (Time.now).to_s(:db)%>

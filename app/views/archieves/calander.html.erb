@@ -1,0 +1,13 @@
+
+<div class="calander">
+	<div class="calander-date" align="center"><%= Date.today.strftime('%B %Y') %></div>
+  <% calendar_for(@tasks, :html => { :id => 'calander-grid', :class => 'calander-grid'}) do |t| %>
+    <%= t.head('S', 'M', 'T', 'W', 'T', 'F', 'S') %>
+    <% t.day(:id => 'calander-day', :class => 'calander-day') do |day, tasks| %>
+      <a href="/archieves/show/<%= day.year %>-<%= day.month %>-<%= day.day %>"><%= day.day %></a>
+      <% tasks.each do |task| %>
+        <%= h(task.name) %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

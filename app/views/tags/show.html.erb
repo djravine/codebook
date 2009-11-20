@@ -1,0 +1,78 @@
+<P>
+<div class="intro">
+
+	Tag: <b><%=h params[:id] %></b>
+
+</div><br/>
+
+<div class="blog">
+	<div class="blog-heading">Latest '<%=h params[:id] %>' Articles...</div><P>
+
+<% @tag_posts.reverse.each do |post| %>
+ 	<table class="blog-title-table" width="100%" cellpadding="0" cellspacing="0">
+	<tr><td align="center" class="blog-date-section">
+		<div class="blog-date-time"><%=h post.created_at.strftime("%I:%M%p") %> <%=h post.created_at.strftime("%Y") %></div>
+		</td></tr><tr><td width="70px" align="center" class="blog-date">
+		<div class="blog-date-day"><%=h post.created_at.strftime("%d") %></div>
+	</td><td valign="bottom" rowspan="3">
+		<div class="blog-title">&nbsp;[<a href="/posts/<%=h post.id %>"><%= sanitize(post.title) %></a>]</div>
+	</td></tr><tr><td align="center" class="blog-date-section">
+		<div class="blog-date-month"><%=h post.created_at.strftime("%B") %></div>
+	</td></tr>
+	</table>
+  <div class="blog-body"><%= preview(post.body) %><p><%= taglinks(post.tags) %></div>
+  <div class="blog-footer" align="right"><a href="/posts/<%=h post.id %>">[Read More]</a></div><P>
+<% end %>
+
+<% if @tag_posts.empty? %>
+	<div class="blog-body">Sorry, There are no articles for this tag...</div>
+<% end %>
+
+<P>
+	<div class="blog-heading">Latest '<%=h params[:id] %>' Downloads...</div><P>
+
+<% @tag_downloads.reverse.each do |download| %>
+ 	<table class="blog-title-table" width="100%" cellpadding="0" cellspacing="0">
+	<tr><td align="center" class="blog-date-section">
+		<div class="blog-date-time"><%=h download.created_at.strftime("%I:%M%p") %> <%=h download.created_at.strftime("%Y") %></div>
+		</td></tr><tr><td width="70px" align="center" class="blog-date">
+		<div class="blog-date-day"><%=h download.created_at.strftime("%d") %></div>
+	</td><td valign="bottom" rowspan="3">
+		<div class="blog-title">&nbsp;[<a href="/downloads/<%=h download.id %>"><%= sanitize(download.title) %></a>]</div>
+	</td></tr><tr><td align="center" class="blog-date-section">
+		<div class="blog-date-month"><%=h download.created_at.strftime("%B") %></div>
+	</td></tr>
+	</table>
+  <div class="blog-body"><%= preview(download.body) %><p><%= taglinks(download.tags) %></div>
+  <div class="blog-footer" align="right"><a href="/downloads/<%=h download.id %>">[Read More]</a></div><P>
+<% end %>
+
+<% if @tag_downloads.empty? %>
+	<div class="blog-body">Sorry, There are no downloads for this tag...</div>
+<% end %>
+
+</div><br/>
+
+
+
+
+
+
+<% content_for :archievesCalander do %>
+	<%= render_component(:controller => 'archieves', :action=> 'calander') %>
+<% end %>
+<% content_for :tagsPosts do %>
+	<%= render_component(:controller => 'tags', :action=> 'list') %>
+<% end %>
+<% content_for :postsRecent do %>
+	<%= render_component(:controller => 'posts', :action=> 'recent') %>
+<% end %>
+<% content_for :postsPopular do %>
+	<%= render_component(:controller => 'posts', :action=> 'popular') %>
+<% end %>
+<% content_for :commentsRecent do %>
+	<%= render_component(:controller => 'comments', :action=> 'recent') %>
+<% end %>
+<% content_for :loginPanel do %>
+	<%= render_component(:controller => 'sessions', :action=> 'new') %>
+<% end %>

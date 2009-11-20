@@ -1,0 +1,29 @@
+<P>
+<div class="blog-heading">Create a Role...</div><p>&nbsp;<br/>
+
+<div align="center">
+
+<% form_for :role, :url => roles_path do |f| -%>
+<%= error_messages_for :role %>
+<table>
+<tr><td align="left">
+	<%= label_tag 'Role' %><br/>
+	<%= f.collection_select :name, @usergroups, :name, :name %>
+</td><td align="left">
+	<%= label_tag 'User' %><br/>
+	<%= f.collection_select :user_id, @users, :id, :login %>
+</td></tr>
+<tr><td align="center" colspan="2">
+	<%= submit_tag 'Create' %>
+</td></tr>
+</table>
+<% end -%>
+
+</div>
+
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

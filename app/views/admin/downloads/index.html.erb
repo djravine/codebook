@@ -1,0 +1,52 @@
+<P>
+<div class="intro">
+
+	Welcome to my download center.
+
+</div>
+<div class="intro">
+
+	Here you will find Sample Projects, Frreware, Free eBooks and other exciting content.
+
+</div><br/>
+
+<div class="blog">
+	<div class="blog-heading">Latest Downloads...</div><P>
+
+<ul id="downloads">
+	<% @downloads.each do |download| %>
+		<li id="download_<%= download.id %>">
+		<% if download.image? %>
+			<a href="/downloads/download/<%= download.id %>" target="_blank"><%= image_tag(download.public_filename(:thumb)) %></a><br />
+		<% end %>
+		<%= link_to(download.filename, download_path(download)) %> (<%= link_to "Delete", download_path(download), :method => :delete, :confirm => "are you sure?"%>)
+		</li>
+	<% end %>
+</ul>
+
+</div><br/>
+
+
+
+
+
+
+
+<% content_for :archievesCalander do %>
+	<%= render_component(:controller => 'archieves', :action=> 'calander') %>
+<% end %>
+<% content_for :tagsPosts do %>
+	<%= render_component(:controller => 'tags', :action=> 'list') %>
+<% end %>
+<% content_for :postsRecent do %>
+	<%= render_component(:controller => 'posts', :action=> 'recent') %>
+<% end %>
+<% content_for :postsPopular do %>
+	<%= render_component(:controller => 'posts', :action=> 'popular') %>
+<% end %>
+<% content_for :commentsRecent do %>
+	<%= render_component(:controller => 'comments', :action=> 'recent') %>
+<% end %>
+<% content_for :loginPanel do %>
+	<%= render_component(:controller => 'sessions', :action=> 'new') %>
+<% end %>

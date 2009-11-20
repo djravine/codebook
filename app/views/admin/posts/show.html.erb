@@ -1,0 +1,24 @@
+<div class="blog">
+
+  <div class="blog-title">[<a href="posts/show/<%=h @post.id %>"><%=h @post.title %></a>] <span class="blog-date-create"><%=h @post.created_at.strftime("%B %d, %Y @ %I:%M%p") %></span></div><P>
+  <div class="blog-body"><%=h @post.body %></div>
+  <div class="blog-tags">TAGS: <%=h @post.tags %></div>
+
+</div><br/>
+
+<div class="comment">
+	<div class="comment-heading">Comments...</div><P>
+
+<% @comments.each do |comment| %>
+  <div class="comment-title"><%=h comment.name %> <span class="comment-date-create"><%=h comment.created_at.strftime("%B %d, %Y @ %I:%M%p") %></span></div>
+  <div class="comment-body"><%=h comment.body %></div><P>
+	<div class="comment-footer"> </div><P>
+<% end %>
+<div class="comment-body"><%=h "No comments..." if @comments.count==0 %></div>
+</div><br/>
+
+
+<div class="comment-create">
+	<div class="comment-heading">Leave a Comment...</div><P>
+	<%= render :partial => "comment_new.html.erb", :locals => {:current_post_id => @post.id} %>  
+</div><br/>

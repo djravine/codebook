@@ -1,0 +1,41 @@
+
+
+<% content_for :archievesCalander do %>
+	<%= render_component(:controller => 'archieves', :action=> 'calander') %>
+<% end %>
+<% content_for :tagsPosts do %>
+	<%= render_component(:controller => 'tags', :action=> 'list') %>
+<% end %>
+<% content_for :postsRecent do %>
+	<%= render_component(:controller => 'posts', :action=> 'recent') %>
+<% end %>
+<% content_for :postsPopular do %>
+	<%= render_component(:controller => 'posts', :action=> 'popular') %>
+<% end %>
+<% content_for :downloadsRecent do %>
+	<%= render_component(:controller => 'downloads', :action=> 'recent') %>
+<% end %>
+<% content_for :downloadsPopular do %>
+	<%= render_component(:controller => 'downloads', :action=> 'popular') %>
+<% end %>
+<% content_for :commentsRecent do %>
+	<%= render_component(:controller => 'comments', :action=> 'recent') %>
+<% end %>
+<% content_for :loginPanel do %>
+	<% if logged_in? %>
+		<%= render_component(:controller => 'sessions', :action=> 'info') %>
+	<% else %>
+		<%= render_component(:controller => 'sessions', :action=> 'new') %>
+	<% end %>
+<% end %>
+<% if admin? %>
+	<% content_for :adminPanel do %>
+		<%= render_component(:controller => 'sessions', :action=> 'admin') %>
+	<% end %>
+<% end %>
+<% if mod? %>
+	<% content_for :modPanel do %>
+		<%= render_component(:controller => 'sessions', :action=> 'mod') %>
+	<% end %>
+<% end %>
+

@@ -1,0 +1,76 @@
+<P>
+<div class="blog">
+	<div class="blog-heading">Edit a File...</div><P>
+
+		<div align="left" ><P>&nbsp;<P>
+			<% form_for(@download) do |f| %>
+			  <%= f.error_messages %>
+			
+				<% if @download.image? %>
+					<%= link_to(image_tag(@download.public_filename(:thumb))) %><br />
+				<% end %>
+
+			  <p>
+			    <b>Filename:</b> <%= @download.filename  %>
+			  </p>
+			  <p>
+			    <b>Content Type:</b> <%= @download.content_type %>
+			  </p>
+			  <p>
+			    <b>Size:</b>: <%= @download.size %>
+			  </p>
+			  <p>
+			    <b>Width:</b> <%= @download.width %>
+			  </p>
+			  <p>
+			    <b>Height:</b> <%= @download.height %>
+			  </p>
+
+				<p>
+					<b>Download:</b> <a href="/downloads/download/<%= params[:id] %>" target="_blank">http://wowps.org:443/downloads/download/<%= params[:id] %></a>
+				</p>
+
+			  <p>
+			    <%= f.label "Title" %><br />
+			    <%= f.text_field :title  %>
+			  </p>
+			  <p>
+			    <%= f.label :tags %><br />
+			    <%= f.text_field :tags %>
+			  </p>
+			  <p class="create-form">
+					<%= textile_editor 'download', 'body', :cols => 66, :rows => 30 -%>
+					<%= textile_editor_initialize -%>
+			  </p>
+			  <p>
+			    <%= f.submit 'Update' %>
+			  </p>
+			<% end %>
+		</div>
+
+</div><br/>
+
+
+
+
+
+
+
+<% content_for :archievesCalander do %>
+	<%= render_component(:controller => 'archieves', :action=> 'calander') %>
+<% end %>
+<% content_for :tagsPosts do %>
+	<%= render_component(:controller => 'tags', :action=> 'list') %>
+<% end %>
+<% content_for :postsRecent do %>
+	<%= render_component(:controller => 'posts', :action=> 'recent') %>
+<% end %>
+<% content_for :postsPopular do %>
+	<%= render_component(:controller => 'posts', :action=> 'popular') %>
+<% end %>
+<% content_for :commentsRecent do %>
+	<%= render_component(:controller => 'comments', :action=> 'recent') %>
+<% end %>
+<% content_for :loginPanel do %>
+	<%= render_component(:controller => 'sessions', :action=> 'new') %>
+<% end %>

@@ -1,0 +1,132 @@
+<br/>
+
+<div class="blog">
+	<div class="blog-heading">Article Archieves...</div><P>
+
+		<table width="100%">
+		  <tr><td align="center" valign="top">
+				<div class="calander">
+					<div class="calander-date" align="center"><%= Date.today.strftime('%B %Y') %></div>
+				  <% calendar_for(@tasks, :html => { :id => 'calander-grid', :class => 'calander-grid'}) do |t| %>
+				    <%= t.head('M', 'T', 'W', 'T', 'F', 'S', 'S') %>
+				    <% t.day(:id => 'calander-day', :class => 'calander-day') do |day, tasks| %>
+				      <a href="/archieves/show/<%= day.year %>-<%= day.month %>-<%= day.day %>"><%= day.day %></a>
+				      <% tasks.each do |task| %>
+				        <%= h(task.name) %>
+				      <% end %>
+				    <% end %>
+				  <% end %>
+				</div><P>
+			</td><td align="center" valign="top">
+				<div class="calander">
+					<div class="calander-date" align="center"><%= @_1lastmonth.strftime('%B %Y') %></div>
+				  <% calendar_for(@tasks, :month => @_1lastmonth.strftime('%m').to_i, :html => { :id => 'calander-grid', :class => 'calander-grid'}) do |t| %>
+				    <%= t.head('M', 'T', 'W', 'T', 'F', 'S', 'S') %>
+				    <% t.day(:id => 'calander-day', :class => 'calander-day') do |day, tasks| %>
+				      <a href="/archieves/show/<%= day.year %>-<%= day.month %>-<%= day.day %>"><%= day.day %></a>
+				      <% tasks.each do |task| %>
+				        <%= h(task.name) %>
+				      <% end %>
+				    <% end %>
+				  <% end %>
+				</div><P>
+			</td><td align="center" valign="top">
+				<div class="calander">
+					<div class="calander-date" align="center"><%= @_2lastmonth.strftime('%B %Y') %></div>
+				  <% calendar_for(@tasks, :month => @_2lastmonth.strftime('%m').to_i, :html => { :id => 'calander-grid', :class => 'calander-grid'}) do |t| %>
+				    <%= t.head('M', 'T', 'W', 'T', 'F', 'S', 'S') %>
+				    <% t.day(:id => 'calander-day', :class => 'calander-day') do |day, tasks| %>
+				      <a href="/archieves/show/<%= day.year %>-<%= day.month %>-<%= day.day %>"><%= day.day %></a>
+				      <% tasks.each do |task| %>
+				        <%= h(task.name) %>
+				      <% end %>
+				    <% end %>
+				  <% end %>
+				</div><P>
+			</td></tr>
+		  <tr><td align="center" valign="top">
+				<div class="calander">
+					<div class="calander-date" align="center"><%= @_3lastmonth.strftime('%B %Y') %></div>
+				  <% calendar_for(@tasks, :month => @_3lastmonth.strftime('%m').to_i, :html => { :id => 'calander-grid', :class => 'calander-grid'}) do |t| %>
+				    <%= t.head('M', 'T', 'W', 'T', 'F', 'S', 'S') %>
+				    <% t.day(:id => 'calander-day', :class => 'calander-day') do |day, tasks| %>
+				      <a href="/archieves/show/<%= day.year %>-<%= day.month %>-<%= day.day %>"><%= day.day %></a>
+				      <% tasks.each do |task| %>
+				        <%= h(task.name) %>
+				      <% end %>
+				    <% end %>
+				  <% end %>
+				</div><P>
+			</td><td align="center" valign="top">
+				<div class="calander">
+					<div class="calander-date" align="center"><%= @_4lastmonth.strftime('%B %Y') %></div>
+				  <% calendar_for(@tasks, :month => @_4lastmonth.strftime('%m').to_i, :html => { :id => 'calander-grid', :class => 'calander-grid'}) do |t| %>
+				    <%= t.head('M', 'T', 'W', 'T', 'F', 'S', 'S') %>
+				    <% t.day(:id => 'calander-day', :class => 'calander-day') do |day, tasks| %>
+				      <a href="/archieves/show/<%= day.year %>-<%= day.month %>-<%= day.day %>"><%= day.day %></a>
+				      <% tasks.each do |task| %>
+				        <%= h(task.name) %>
+				      <% end %>
+				    <% end %>
+				  <% end %>
+				</div><P>
+			</td><td align="center" valign="top">
+				<div class="calander">
+					<div class="calander-date" align="center"><%= @_5lastmonth.strftime('%B %Y') %></div>
+				  <% calendar_for(@tasks, :month => @_5lastmonth.strftime('%m').to_i, :html => { :id => 'calander-grid', :class => 'calander-grid'}) do |t| %>
+				    <%= t.head('M', 'T', 'W', 'T', 'F', 'S', 'S') %>
+				    <% t.day(:id => 'calander-day', :class => 'calander-day') do |day, tasks| %>
+				      <a href="/archieves/show/<%= day.year %>-<%= day.month %>-<%= day.day %>"><%= day.day %></a>
+				      <% tasks.each do |task| %>
+				        <%= h(task.name) %>
+				      <% end %>
+				    <% end %>
+				  <% end %>
+				</div><P>
+			</td></tr>
+		</table><P>
+
+		<div class="blog-heading">Latest Article List...</div>
+
+		<table width="100%">
+		  <tr>
+		    <th align="left" width="10%">Date</th>
+		    <th align="left">Title</th>
+		    <!--<th align="left" width="200px">Tags</th>-->
+		  </tr>
+		
+		<% @posts.reverse.each do |post| %>
+		  <tr>
+		    <td class="datestamp" align="left" valign="top"><%=h post.created_at.strftime("%Y-%m-%d") %></td>
+		    <td align="left" valign="top"><a href="/posts/<%= post.id %>"><%= post.title %></a></td>
+		    <!--<td align="left"><%= taglinksarchieves(post.tags) %></td>-->
+		  </tr>
+		<% end %>
+		</table>
+
+		<P>
+		<div class="blog-heading">Latest Download List...</div>
+
+		<table width="100%">
+		  <tr>
+		    <th align="left" width="10%">Date</th>
+		    <th align="left">Title</th>
+		    <!--<th align="left" width="200px">Tags</th>-->
+		  </tr>
+		
+		<% @downloads.reverse.each do |download| %>
+		  <tr>
+		    <td class="datestamp" align="left" valign="top"><%=h download.created_at.strftime("%Y-%m-%d") %></td>
+		    <td align="left" valign="top"><a href="/downloads/<%= download.id %>"><%= download.title %></a></td>
+		    <!--<td align="left"><%= taglinksarchieves(download.tags) %></td>-->
+		  </tr>
+		<% end %>
+		</table>
+
+</div><br/>
+
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

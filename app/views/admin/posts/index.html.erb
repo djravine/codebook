@@ -1,0 +1,35 @@
+
+<br/>
+
+<div class="blog">
+	<div class="blog-heading">Blog Articles...</div><P>
+
+		<table width="100%">
+		  <tr>
+		    <th align="left" width="10%"></th>
+		    <th align="left"></th>
+		    <th align="left"></th>
+		    <th align="right" width="12%">
+					<%= link_to "<img src='http://wowps.org:443/images/icons/add.png' alt='Add' border='0'>", new_admin_post_path %></th>
+		  </tr>
+		
+		<% @posts.reverse.each do |post| %>
+		  <tr>
+		    <td class="datestamp"><%=h post.created_at.strftime("%Y-%m-%d") %></td>
+		    <td align="left"><%= link_to get_username(post.user_id), edit_admin_post_path(post) %></td>
+		    <td align="left"><%= link_to post.title, edit_admin_post_path(post) %></td>
+		    <td align="right">
+					<%= link_to "<img src='http://wowps.org:443/images/icons/zoom.png' alt='Show' border='0'>", post %>
+					<%= link_to "<img src='http://wowps.org:443/images/icons/table.png' alt='Edit' border='0'>", edit_admin_post_path(post) %>
+					<%= link_to "<img src='http://wowps.org:443/images/icons/delete.png' alt='Delete' border='0'>", [:admin, post], :confirm => 'Are you sure?', :method => :delete %>
+				</td>
+		  </tr>
+		<% end %>
+		</table>
+
+</div><br/>
+
+
+
+
+<% render :file => '/_partial/_includes.html.erb'  %>

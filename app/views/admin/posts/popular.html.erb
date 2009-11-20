@@ -1,0 +1,9 @@
+
+<% @posts_popular.reverse.each do |post| %>
+  <div class="recent-sidebar">
+	  <div class="recent-title"><a href="posts/show/<%=h post.id %>"><%=h post.title %></a></div>
+  	<div class="recent-date-create" align="left"><%=h post.created_at.strftime("%B %d, %Y @ %I:%M%p") %></div>
+	</div>
+<% end %>
+
+

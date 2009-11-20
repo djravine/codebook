@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>DJRavine's Codebook: <%= controller.action_name %></title>
+
+  <%= javascript_include_tag :defaults %>
+  <%= active_scaffold_includes %>
+  <%= stylesheet_link_tag 'scaffold', 'overrides', 'master', :media => 'all' %>
+	<!--[if IE]>
+  <%= stylesheet_link_tag 'ie-fix', :media => 'all' %>
+	<![endif]-->
+	<%= syntax_css %>
+	<script type="text/javascript" src="/javascripts/prototype.js"></script>
+	<script type="text/javascript" src="/javascripts/scriptaculous.js?load=effects,builder"></script>
+	<script type="text/javascript" src="/javascripts/lightbox.js"></script>
+	<link rel="stylesheet" href="/stylesheets/lightbox.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/shadowbox/shadowbox.css">
+	<script type="text/javascript" src="/shadowbox/shadowbox.js"></script>
+	<script type="text/javascript">
+		Shadowbox.init({players: ["img","swf","flv","qt","wmp","html","iframe"]});
+	</script>
+
+</head>
+
+<body bgcolor="black">
+<center><div id="header_top"></div></center>
+<div id="container">
+
+	<div id="content">
+	<%= yield %>
+	</div>
+	
+	<div id="sidebar_left">
+		<ul id="menu">
+			<li><a href="/">Home</a></li>
+			<li><a href="/purposes/">Purpose / Vision</a></li>
+			<li><a href="/authors/">About the Author</a></li>
+			<li><a href="/archieves/">Article Archieve</a></li>
+			<li><a href="/downloads/">Media Downloads</a></li>
+			<li><a href="/questions/">Help / Questions</a></li>
+			<li><a href="/contacts/">Contact Us</a></li>
+		</ul>
+		
+		<div id="link_tweak">
+		
+		<div id="loginPanel">
+			<h2><%= logged_in? ? "Welcome, #{@current_user.login}... <div align='right' class='loginpanel-controls-user-buttons'><a href='/users/#{@current_user.id}/edit'><img src='/images/icons/user_edit.png' alt='Edit Profile' title='Edit Profile' border='0'></a> <a href='/logout'><img src='/images/icons/cancel.png' alt='Logout' title='Logout' border='0'></a></div>" : "Please Login..." %></h2>
+			<ul class="links">
+				<%= yield :loginPanel %>
+			</ul>
+		</div><P>
+
+		<% if admin? %>
+		<div id="adminPanel">
+			<h2>Administrator Controls...</h2>
+			<ul class="links">
+				<%= yield :adminPanel %>
+			</ul>
+		</div><P>
+		<% end %>
+
+		<% if mod? %>
+		<div id="modPanel">
+			<h2>Moderator Controls...</h2>
+			<ul class="links">
+				<%= yield :modPanel %>
+			</ul>
+		</div><P>
+		<% end %>
+		
+		<div id="archievesCalander">
+			<h2>Article Archieves...</h2>
+			<ul class="links">
+				<%= yield :archievesCalander %>
+			</ul>
+		</div>
+		
+		<div id="tagsPosts">
+			<h2>Article Tag Cloud...</h2>
+			<ul class="links">
+				<%= yield :tagsPosts %>
+			</ul>
+		</div>
+		
+		<div id="postsPopular">
+			<ul class="links">
+				<ul class="tabselector" id="tabcontrol1">
+				  <li class="tab-selected" id="pane_pop_tab">
+				    <%= link_to_function('Popular', "tabselect($('pane_pop_tab')); paneselect($('pane_pop'))") %></li>
+				  <li class="tab-unselected" id="pane_rec_tab">
+				    <%= link_to_function('Recent', "tabselect($('pane_rec_tab')); paneselect($('pane_rec'))") %></li>
+				</ul>
+				
+				<ul class="panes" id="panecontrol1">
+				  <li id="pane_pop" class="pane-selected"><P>
+				    <div id="postsPopular">
+							<h2>Popular Articles...</h2>
+							<ul class="links">
+								<%= yield :postsPopular %>
+							</ul>
+						</div>
+						<div id="downloadsPopular">
+							<h2>Popular Downloads...</h2>
+							<ul class="links">
+								<%= yield :downloadsPopular %>
+							</ul>
+						</div>
+				  </li>
+				  <li id="pane_rec" class="pane-unselected"><P>
+						<div id="postsRecent">
+							<h2>Recent Articles...</h2>
+							<ul class="links">
+								<%= yield :postsRecent %>
+							</ul>
+						</div>
+						<div id="downloadsRecent">
+							<h2>Recent Downloads...</h2>
+							<ul class="links">
+								<%= yield :downloadsRecent %>
+							</ul>
+						</div>
+						<div id="commentsRecent">
+							<h2>Recent Comments...</h2>
+							<ul class="links">
+								<%= yield :commentsRecent %>
+							</ul>
+						</div>
+					</li>
+				<ul>
+			</ul>
+		</div>
+	
+	</div>
+</div>
+
+
+
+</div>
+
+<%= flash[:notice] == nil ? '' : '	<script type="text/javascript">window.onload = function(){open_box(\''+flash[:notice]+'\');};</script>' %>
+
+</body></html>
+
+
